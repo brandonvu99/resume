@@ -8,6 +8,8 @@
 
 \documentclass[11pt,letterpaper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
+\usepackage[super]{nth}
+
 % moderncv themes
 \moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
 \moderncvcolor{grey}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
@@ -78,85 +80,79 @@
 	%\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % arguments 3 to 6 can be left empty
 	%\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
 
-%\section{Master thesis}
-	%\cvitem{title}{\emph{Title}}
-	%\cvitem{supervisors}{Supervisors}
-	%\cvitem{description}{Short thesis abstract}
-
-\vspace*{-0.25cm}
 \section{Work Experience}	
 	\cventry{May 2018 -- Present}{Undergraduate Teaching Assistant, CS 1332 (Data Structures \& Algorithms)}{College of Computing, Georgia Institute of Technology}{Atlanta}{GA}{
-	\begin{itemize}%
-	\item Held office hours to help students debug recursive assembly code, their implementations of \texttt{malloc()}, and Game Boy Advance games written in C
-	\end{itemize}}
-	%
+		\begin{itemize}
+		\item Teach weekly recitations of 60\texttt{+} students
+		\item Hold 3\texttt{+} office hours per week for out-of-class assistance on homework and exam prep
+		\item Aid in creation and grading of exams, coding assignments, and their JUnit auto-grader tests
+		\end{itemize}
+	}
 	\cventry{May 2019 -- August 2019}{Software Engineering Intern}{NCR Corporation}{Atlanta}{GA}{
-	\begin{itemize}%
-	\item Helped write a productivity metrics visualization dashboard written in React and Node.js for Chief Information Officer, Vice Presidents, and Directors
-	\item Configured and created Concourse pipelines for continuous integration and continuous deployment
-	\item Improved Slack bot written in Node.js which gathered information about internal applications by consuming the REST APIs of additional internal services
-	\end{itemize}}
+		\begin{itemize}
+		\item Helped write a productivity metrics visualization dashboard written in React and Node.js for Engineering Managers
+		\item Configured and created Concourse pipelines for continuous integration and continuous deployment
+		\item Improved Slack bot written in Node.js which gathered information about internal applications by consuming the REST APIs of additional internal services
+		\item Won \nth{1} in Software and Honorable Mention out of all 40(?) intern groups for Best Overall Intern Project
+		\end{itemize}
+	}
 	
-\small
-\vspace*{-0.25cm}
-\section{Personal Projects}
-	\cvlistitem{\textbf{Taxathon}, a C program for GNU/Linux allowing nonprivileged users to execute applications in Linux network namespaces. Useful for isolating particular applications in VPNs}
-	\cvlistitem{\textbf{Bee-Snap: BeeKeeperGo}, a TypeScript library which aims to unify the assembly debugger/autograding infrastructure across undergraduate Systems and Architecture classes. Uses an LR(1) parser to parse a common ISA-agnostic syntax}
-	\cvlistitem{\textbf{Donation Tracker}, a web git repository viewer written in Go using libgit2}
-	%\cvlistitem{\textbf{toolbag}, a collection of web utilities for my personal website, which includes a web ASCII art generator that invokes a command-line ASCII art generator securely in a systemd-nspawn container}
+\section{Projects}
+	\cvlistitem{\textbf{Taxathon}, a top 3 out of 400 app created at an \textit{NCR Corporation} hackathon that served as a central tax service for \textit{NCR}'s many point of sales that communicate to many external tax services. Built to be extensible to more point of sales and external tax services.}
+	\cvlistitem{\textbf{Bee-Snap: BeeKeeperGo}, a mobile game built in Unity and C\# that collects and analyzes locations of crowd-sourced images of different species of bees}
+	\cvlistitem{\textbf{Donation Tracker}, an Android app for \textit{CS+Social Good} to help non-profit organizations track donations of goods across multiple donation centers and to serve as a medium to redistribute their goods}
 	
-	%\section{Languages}
+%\section{Languages}
 	%\cvitemwithcomment{Language 1}{Skill level}{Comment}
 	%\cvitemwithcomment{Language 2}{Skill level}{Comment}
 	%\cvitemwithcomment{Language 3}{Skill level}{Comment}
-	
-\vspace*{-0.25cm}
+
 \section{Activities}
 	\cventry{August 2017 -- Present}{GT Pride}{Member}{}{}{}
 
 \section{Coursework}
+	\cvitem{}{Design \& Analysis of Algorithms; Data Structures \& Algorithms; Computer Vision; Computer Systems \& Networks; Information Security; Database Systems; Probability \& Statistics; Intro to AI; Applied Combinatorics}
 	
-\vspace*{-0.20cm}
 \section{Skills}
-	\cvdoubleitem{Languages}{Rust, Python, Java, C, MySQL}{Other}{SpringBoot, Docker, JUnit Testing, Git, \LaTeX}
+	\cvdoubleitem{Languages:}{Rust, Python, Java, C, C\#, MySQL}{Other:}{SpringBoot, Docker, JUnit Testing, Git, \LaTeX}
 
-%%\section{Interests}
-%\cvitem{hobby 1}{Description}
-%\cvitem{hobby 2}{Description}
-%\cvitem{hobby 3}{Description}
+%\section{Interests}
+%	\cvitem{hobby 1}{Description}
+%	\cvitem{hobby 2}{Description}
+%	\cvitem{hobby 3}{Description}
 %
 %\section{Extra 1}
-%\cvlistitem{Item 1}
-%\cvlistitem{Item 2}
-%\cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+%	\cvlistitem{Item 1}
+%	\cvlistitem{Item 2}
+%	\cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
 %
 %\section{Extra 2}
-%\cvlistdoubleitem{Item 1}{Item 4}
-%\cvlistdoubleitem{Item 2}{Item 5\cite{book1}}
-%\cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
+%	\cvlistdoubleitem{Item 1}{Item 4}
+%	\cvlistdoubleitem{Item 2}{Item 5\cite{book1}}
+%	\cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
 %
 %\section{References}
-%\begin{cvcolumns}
-%  \cvcolumn{Category 1}{\begin{itemize}\item Person 1\item Person 2\item Person 3\end{itemize}}
-%  \cvcolumn{Category 2}{Amongst others:\begin{itemize}\item Person 1, and\item Person 2\end{itemize}(more upon request)}
-%  \cvcolumn[0.5]{All the rest \& some more}{\textit{That} person, and \textbf{those} also (all available upon request).}
-%\end{cvcolumns}
+%	\begin{cvcolumns}
+%		\cvcolumn{Category 1}{\begin{itemize}\item Person 1\item Person 2\item Person 3\end{itemize}}
+%		\cvcolumn{Category 2}{Amongst others:\begin{itemize}\item Person 1, and\item Person 2\end{itemize}(more upon request)}
+%		\cvcolumn[0.5]{All the rest \& some more}{\textit{That} person, and \textbf{those} also (all available upon request).}
+%	\end{cvcolumns}
 
 % Publications from a BibTeX file without multibib
-%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
-%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+% for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+% to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
 %\nocite{*}
 %\bibliographystyle{plain}
 %\bibliography{publications}                        % 'publications' is the name of a BibTeX file
-
-% Publications from a BibTeX file using the multibib package
+%
+%% Publications from a BibTeX file using the multibib package
 %\section{Publications}
-%\nocitebook{book1,book2}
-%\bibliographystylebook{plain}
-%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
-%\nocitemisc{misc1,misc2,misc3}
-%\bibliographystylemisc{plain}
-%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+%	\nocitebook{book1,book2}
+%	\bibliographystylebook{plain}
+%	\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%	\nocitemisc{misc1,misc2,misc3}
+%	\bibliographystylemisc{plain}
+%	\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
 
 \clearpage
 %-----       letter       ---------------------------------------------------------
