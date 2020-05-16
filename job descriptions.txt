@@ -1,0 +1,33 @@
+Job Title
+Software Engineering Intern
+
+Company
+NCR Corporation
+
+Location
+Atlanta, GA
+
+- Helped create an app in SpringBoot and Rust for Engineer Managers to monitor NCR online ordering services
+- Designed a RESTful API to interface with an Elasticsearch database storing monitored NCR customer’s data
+- Created a Kibana visualization dashboard that showed the services’ health in a quickly digestible medium
+- Helped containerize and deploy the app onto Google Cloud Platform
+- Won 1st in Software and Honorable Mention out of all 155 intern groups for Best Overall Intern Project
+
+
+
+Job Title
+Undergraduate Teaching Assistant for Data Structures & Algorithms
+
+Company
+College of Computing, Georgia Institute of Technology
+
+Location
+Atlanta, GA
+
+- Teach weekly 1.5 hour recitations of 40+ students on topics such as sorting, pattern matching, dynamic programming algorithms, lists, stacks & queues, trees, maps, and graphs
+- Hold 3+ office hours per week for out-of-class assistance on homework and exam prep
+- Aid in creation and grading of exams, coding assignments, and their JUnit auto-grader tests
+
+
+Skills
+Rust, Python, Java, C, MySQL, Docker, PyTorch, SpringBoot, Git, JIRA
