@@ -200,6 +200,9 @@
 %\makeletterclosing
 
 %\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+
+% Brandon Vu's script to get job descriptions out from this latex file into an easily copy-pastable text file
+\immediate\write18{python extract_job_descriptions.py}
 \end{document}
 
 
