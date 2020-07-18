@@ -13,7 +13,7 @@ latex_escaped_chars_replacement_map = (
     ('\\\\textit\\{NCR\\}', 'NCR'),
     ('\\\\texttt\\{\+\\}', '+'),
     ('\\\\nth\\{1\\}', '1st'),
-    # ('\\\\%', '%'),
+    ('\\\\%', '%'),
 )
 
 # Object to hold one Work Experience listing
