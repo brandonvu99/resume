@@ -7,7 +7,8 @@ latex_escaped_chars_replacement_map = (
     ('\\\\\$', '$'),
     ('\\\\textit\\{NCR\\}', 'NCR'),
     ('\\\\texttt\\{\+\\}', '+'),
-    ('\\\\nth\\{1\\}', '1st')
+    ('\\\\nth\\{1\\}', '1st'),
+    # ('\\\\%', '%'),
 )
 
 class Work_Exp_Listing():
