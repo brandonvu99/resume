@@ -1,6 +1,9 @@
 import re
 import pprint
+import os
 JOB_DESCRIPTIONS_TEXT_FILE_PATH = 'job descriptions.txt'
+if os.path.exists(JOB_DESCRIPTIONS_TEXT_FILE_PATH):
+    os.remove(JOB_DESCRIPTIONS_TEXT_FILE_PATH)
 pp = pprint.PrettyPrinter(indent=4)
 
 # Mapping of x to y that is used to replace every instance of x with y in the tex string
@@ -76,5 +79,33 @@ def get_one_work_experience_listing(one_work_listing):
 # Create the entire Work Experience section
 work_exp = Work_Exp([get_one_work_experience_listing(x) for x in each_work_experience_listing])
 
-with open('job descriptions.txt', 'w') as f:
-    f.write(str(work_exp))
+# Gets back a list of tuples (line number, char number in line, actual line) of regex matches within src
+def get_matching_line_num_and_line(regex, src):
+    # Separate each line into its own string
+    lines = src.split('\n')
+    matches = []
+    # Iterate over those lines
+    for line_num, line in enumerate(lines):
+        # Check if the regex exist in this line
+        match = re.search(regex, line)
+        # If it does, make and add the tuple as specified in the function docs
+        if match is not None:
+            matches.append((line_num, match.span()[0], line))
+    return matches
+
+# Check if there are any unhandled escaped chars/macros. If there are, throw an error and don't save the file
+work_exp_as_text = str(work_exp)
+unhandled_escape_chars = get_matching_line_num_and_line('\\\\', work_exp_as_text)
+
+# Pretty print unhandled escape chars
+def string_pretty_print_unhandled_escape_chars(unhandled_escape_chars):
+    pretty_strings = []
+    for line_num, char_num, line in unhandled_escape_chars:
+        pretty_strings.append(f'{line_num}:{char_num}\t{line}')
+    return '\n'.join(pretty_strings)
+
+if len(unhandled_escape_chars) > 0:
+    print('Found an unescaped character at the following line_num:char_num_in_line pairs:\n' + string_pretty_print_unhandled_escape_chars(unhandled_escape_chars))
+else:
+    with open(JOB_DESCRIPTIONS_TEXT_FILE_PATH, 'w') as f:
+        f.write(work_exp_as_text)

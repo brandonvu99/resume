@@ -9,6 +9,7 @@
 \documentclass[11pt,letterpaper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 \usepackage[super]{nth}
+\usepackage{xstring}
 
 % moderncv themes
 \moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
@@ -204,7 +205,15 @@
 %\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
 
 % Brandon Vu's script to get job descriptions out from this latex file into an easily copy-pastable text file
-\immediate\write18{python extract_job_descriptions.py}
+\newread\myscriptresult
+\immediate\write18{python extract_job_descriptions.py > scriptresult.txt}
+\immediate\openin\myscriptresult=scriptresult.txt
+\read\myscriptresult to \ScriptResult
+\immediate\closein\myscriptresult
+\IfSubStr{\ScriptResult}{Found an unescaped character at the following}{
+	\PackageError{UnescapedCharCheck}{
+		Unescaped character found in python script. Check scriptresult.txt to see what unescaped character you need to add to the python script's replacement mapping}{}
+	}{}
 \end{document}
 
 
