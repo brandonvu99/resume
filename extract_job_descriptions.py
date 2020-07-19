@@ -11,6 +11,7 @@ latex_escaped_chars_replacement_map = (
     ('\\\\&', '&'),
     ('\\\\\$', '$'),
     ('\\\\textit\\{NCR\\}', 'NCR'),
+    ('\\\\textit\\{Capital One\\}', 'Capital One'),
     ('\\\\texttt\\{\+\\}', '+'),
     ('\\\\nth\\{1\\}', '1st'),
     ('\\\\%', '%'),
