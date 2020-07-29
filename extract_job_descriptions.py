@@ -31,7 +31,11 @@ class Work_Exp_Listing():
     
     def __repr__(self):
         description_list = '- ' + '\n- '.join(self.description_list)
-        return f'Job Title\n{self.title}\n\nCompany\n{self.company}\n\nLocation\n{self.location}\n\n{description_list}'
+        return f'Company\n{self.company}\n\n' + \
+               f'Job Title\n{self.title}\n\n' + \
+               f'Dates\n{self.date_range}\n\n' + \
+               f'Location\n{self.location}\n\n' + \
+               f'{description_list}'
 
 # Object to represent the entire Work Experience section
 class Work_Exp():
