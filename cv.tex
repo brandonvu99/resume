@@ -213,7 +213,9 @@
 \IfSubStr{\ScriptResult}{Found an unescaped character at the following}{
 	\PackageError{UnescapedCharCheck}{
 		Unescaped character found in python script. Check scriptresult.txt to see what unescaped character you need to add to the python script's replacement mapping}{}
-	}{}
+}{
+	\immediate\write18{del scriptresult.txt}
+}
 \end{document}
 
 
