@@ -8,13 +8,13 @@ pp = pprint.PrettyPrinter(indent=4)
 
 # Mapping of x to y that is used to replace every instance of x with y in the tex string
 latex_escaped_chars_replacement_map = (
-    ('\\\\&', '&'),
-    ('\\\\\$', '$'),
-    ('\\\\textit\\{NCR\\}', 'NCR'),
-    ('\\\\textit\\{Capital One\\}', 'Capital One'),
-    ('\\\\texttt\\{\+\\}', '+'),
-    ('\\\\nth\\{1\\}', '1st'),
-    ('\\\\%', '%'),
+    (r'\\&', '&'),
+    (r'\\$', '$'),
+    (r'\\textit\{NCR\}', 'NCR'),
+    (r'\\textit\{Capital One\}', 'Capital One'),
+    (r'\\texttt\{\+\}', '+'),
+    (r'\\nth\{1\}', '1st'),
+    (r'\\%', '%'),
 )
 
 # Object to hold one Work Experience listing
