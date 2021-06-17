@@ -1,6 +1,6 @@
 # Brandon Vu's Resume
 
-This is a repo containing my resume. You need to build the `.pdf` of the resume though.
+This is a repo containing my resume. To get the most up to date resume, you will need to build the `.pdf` of the resume; otherwise, check releases for a somewhat (or most up to date if I remember to do a release) version.
 
 # How to Build
 1. Install LaTeX
