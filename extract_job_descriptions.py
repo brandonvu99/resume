@@ -58,10 +58,20 @@ work_experience_contents = re.search('\\\\section{Work Experience}\n((.|\n)*)\\\
 work_experience_contents = re.sub('\n\t', '\n', work_experience_contents)
 work_experience_contents = re.sub('^\t', '', work_experience_contents)
 
+# Remove \begin{itemize}\end{itemize} section
+work_experience_contents = re.sub(r'\\begin{itemize}', '', work_experience_contents)
+work_experience_contents = re.sub(r'\\end{itemize}', '', work_experience_contents)
+
 # Use the mapping to replace every escaped tex char/macro with the plaintext version
 for find_str, sub_str in latex_escaped_chars_replacement_map:
     work_experience_contents = re.sub(find_str, sub_str, work_experience_contents)
 # work_experience_contents = re.sub('^\\t[^\\t]*$', '', work_experience_contents)
+
+# latex_special_escaped_chars = ('&', '$', '%')
+# regex_pattern = r'\\(?!cventry)[a-zA-z]*{(.*)}' + \
+#                 r'|' + \
+#                 r'\\([' + ''.join(latex_special_escaped_chars) + "])"
+# work_experience_contents = re.sub(regex_pattern, r'\1\2', work_experience_contents)
 
 # Separate each job into its own string
 each_work_experience_listing = work_experience_contents.split('\\cventry')[1:]
