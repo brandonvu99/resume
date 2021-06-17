@@ -15,6 +15,7 @@ latex_escaped_chars_replacement_map = (
     (r'\\texttt\{\+\}', '+'),
     (r'\\nth\{1\}', '1st'),
     (r'\\%', '%'),
+    (r'\\textbf\{live\}', 'live')
 )
 
 # Object to hold one Work Experience listing
