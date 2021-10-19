@@ -15,7 +15,14 @@ PROJECTS_TEXT_FILE_PATH = 'sections_extracted/projects.txt'
 SKILLS_YAML_FILE_PATH = 'sections_extracted/skills.yaml'
 SKILLS_TEXT_FILE_PATH = 'sections_extracted/skills.txt'
 ALL_FILE_PATHS_TO_EXTRACTED_DATA = [
-
+    EDUCATION_YAML_FILE_PATH,
+    EDUCATION_TEXT_FILE_PATH,
+    JOB_DESCRIPTIONS_YAML_FILE_PATH,
+    JOB_DESCRIPTIONS_TEXT_FILE_PATH,
+    PROJECTS_YAML_FILE_PATH,
+    PROJECTS_TEXT_FILE_PATH,
+    SKILLS_YAML_FILE_PATH,
+    SKILLS_TEXT_FILE_PATH,
 ]
 for file_path in ALL_FILE_PATHS_TO_EXTRACTED_DATA:
     if os.path.exists(file_path):
