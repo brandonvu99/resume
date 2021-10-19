@@ -207,7 +207,7 @@
 
 % Brandon Vu's script to get job descriptions out from this latex file into an easily copy-pastable text file
 \newread\myscriptresult
-\immediate\write18{python parse_resume_to_jsons.py > scriptresult.txt}
+\immediate\write18{python parse_resume_to_yamls.py > scriptresult.txt}
 \immediate\openin\myscriptresult=scriptresult.txt
 \read\myscriptresult to \ScriptResult
 \immediate\closein\myscriptresult
