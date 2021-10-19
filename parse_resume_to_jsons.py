@@ -6,6 +6,9 @@ if os.path.exists(JOB_DESCRIPTIONS_TEXT_FILE_PATH):
     os.remove(JOB_DESCRIPTIONS_TEXT_FILE_PATH)
 pp = pprint.PrettyPrinter(indent=4)
 
+def extract_education():
+    pass
+
 def extract_job_descriptions():
     # Mapping of x to y that is used to replace every instance of x with y in the tex string
     latex_escaped_chars_replacement_map = (
@@ -127,4 +130,13 @@ def extract_job_descriptions():
         with open(JOB_DESCRIPTIONS_TEXT_FILE_PATH, 'w') as f:
             f.write(work_exp_as_text)
 
+def extract_projects():
+    pass
+
+def extract_skills():
+    pass
+
+extract_education()
 extract_job_descriptions()
+extract_projects()
+extract_skills()
