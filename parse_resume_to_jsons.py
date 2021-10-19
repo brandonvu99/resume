@@ -1,15 +1,30 @@
+import ruamel.yaml
+yaml = ruamel.yaml.YAML()
+yaml.indent(sequence=4)
 import re
 import pprint
-import os
-JOB_DESCRIPTIONS_TEXT_FILE_PATH = 'sections_extracted/job_descriptions.txt'
-if os.path.exists(JOB_DESCRIPTIONS_TEXT_FILE_PATH):
-    os.remove(JOB_DESCRIPTIONS_TEXT_FILE_PATH)
 pp = pprint.PrettyPrinter(indent=4)
+import os
+
+EDUCATION_YAML_FILE_PATH = 'sections_extracted/education.yaml'
+EDUCATION_TEXT_FILE_PATH = 'sections_extracted/education.txt'
+JOB_DESCRIPTIONS_YAML_FILE_PATH = 'sections_extracted/job_descriptions.yaml'
+JOB_DESCRIPTIONS_TEXT_FILE_PATH = 'sections_extracted/job_descriptions.txt'
+PROJECTS_YAML_FILE_PATH = 'sections_extracted/projects.yaml'
+PROJECTS_TEXT_FILE_PATH = 'sections_extracted/projects.txt'
+SKILLS_YAML_FILE_PATH = 'sections_extracted/skills.yaml'
+SKILLS_TEXT_FILE_PATH = 'sections_extracted/skills.txt'
+ALL_FILE_PATHS_TO_EXTRACTED_DATA = [
+
+]
+for file_path in ALL_FILE_PATHS_TO_EXTRACTED_DATA:
+    if os.path.exists(file_path):
+        os.remove(file_path)
 
 def extract_education():
     pass
 
-def extract_job_descriptions():
+def extract_job_descriptions_to_txt():
     # Mapping of x to y that is used to replace every instance of x with y in the tex string
     latex_escaped_chars_replacement_map = (
         (r'\\&', '&'),
@@ -129,6 +144,74 @@ def extract_job_descriptions():
     else:
         with open(JOB_DESCRIPTIONS_TEXT_FILE_PATH, 'w') as f:
             f.write(work_exp_as_text)
+
+def extract_job_descriptions():
+    # Mapping of x to y that is used to replace every instance of x with y in the tex string
+    latex_escaped_chars_replacement_map = (
+        (r'\\&', '&'),
+        (r'\\$', '$'),
+        (r'\\texttt\{\+\}', '+'),
+        (r'\\nth\{1\}', '1st'),
+        (r'\\%', '%')
+    )
+
+    # Object to hold one Work Experience listing
+    class Work_Exp_Listing():
+        def __init__(self, date_start="", date_end="", title="", company="", city="", state="", description_list=[]):
+            self.date_start = date_start
+            self.date_end = date_end
+            self.title = title
+            self.company = company
+            self.city = city
+            self.state = state
+            self.description_list = description_list
+    yaml.register_class(Work_Exp_Listing)
+    
+    # Open the tex file as a string
+    with open('cv.tex', 'r') as f:
+        texfile = f.read()
+
+    # Extract the Work Experience section as a string
+    work_experience_contents = re.search('\\\\section{Work Experience}\n((.|\n)*)\\\\section{Projects}', texfile).group(1)
+
+    # Unindent each line by one tab
+    work_experience_contents = re.sub('\n\t', '\n', work_experience_contents)
+    work_experience_contents = re.sub('^\t', '', work_experience_contents)
+
+    # Remove \begin{itemize}\end{itemize} section
+    work_experience_contents = re.sub(r'\\begin{itemize}', '', work_experience_contents)
+    work_experience_contents = re.sub(r'\\end{itemize}', '', work_experience_contents)
+
+    # Use the mapping to replace every escaped tex char/macro with the plaintext version
+    for find_str, sub_str in latex_escaped_chars_replacement_map:
+        work_experience_contents = re.sub(find_str, sub_str, work_experience_contents)
+
+    # Separate each job into its own string
+    each_work_experience_listing = work_experience_contents.split(r'\cventry')[1:]
+
+    def get_one_work_experience_listing(one_work_listing):
+        # Unindent each line by one tab
+        one_work_listing = re.sub('\\t', '', one_work_listing)
+        # Get rid of the \item enumeration from each bullet point
+        one_work_listing = re.sub('\\\item ', '', one_work_listing)
+        # Separate (metadata and) each bullet point into its own string
+        one_work_listing = one_work_listing.strip().split('\n')
+        # Define the metadata of a job, like date_range, title, etc.
+        metadata = one_work_listing[0]
+        # Further split the metadata that's wrapped in curly brackets
+        date_range, title, company, city, state = re.findall('{([^{}]*)}', metadata)
+        # Split the date_range into date_start and date_end
+        date_start, date_end = date_range.split(' -- ')
+        # Extract only the bullet points from the list
+        description_list = one_work_listing[2:-2]
+
+        return Work_Exp_Listing(date_start, date_end, title, company, city, state, description_list)
+
+    # Create the entire Work Experience section
+    work_exp = [get_one_work_experience_listing(x) for x in each_work_experience_listing]
+
+    with open(JOB_DESCRIPTIONS_YAML_FILE_PATH, 'w') as f:
+        yaml.dump(work_exp, f)
 
 def extract_projects():
     pass

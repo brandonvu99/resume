@@ -1,0 +1,65 @@
+- !Work_Exp_Listing
+    date_start: February 2021
+    date_end: Present
+    title: Associate Software Engineer
+    company: Capital One
+    city: Richmond
+    state: VA
+    description_list:
+    -   'Worked on a 5-member team in moving an app from ingesting batch data daily
+        to ingesting \textbf{live} data '
+    -   Modernizing a different batch data processor by drastically simplifying a
+        complex system of AWS services into a few parts, leveraging existing enterprise
+        tools
+    -   Created onboarding documentation for the team's projects after noticing a
+        lack of documentation
+    -   Mentored summer Software Engineer interns to help navigate their \textit{Capital
+        One} experience
+- !Work_Exp_Listing
+    date_start: May 2020
+    date_end: August 2020
+    title: Software Engineering Intern
+    company: Capital One
+    city: Richmond
+    state: VA
+    description_list:
+    -   Deployed an internal support service into production using AWS Fargate
+    -   Reduced running costs by 30% and stand-up time of service from 15 minutes
+        to 1 minute by eliminating need for manual rehydrations, upgrades, and management
+        of architecture
+    -   Implemented auto-scaling and load balancing based on spikes in current resource
+        usage
+    -   Documented procedure for other engineers to migrate their services to Fargate
+        seamlessly in the \textit{Capital One} environment
+- !Work_Exp_Listing
+    date_start: May 2019
+    date_end: August 2019
+    title: Software Engineering Intern
+    company: NCR Corporation
+    city: Atlanta
+    state: GA
+    description_list:
+    -   'Created a service in SpringBoot and Rust to reduce time spent debugging when
+        on-call for Engineer Managers by monitoring \textit{NCR} online ordering services  '
+    -   Won 1st in Software and Honorable Mention out of all 155 intern groups for
+        Best Overall Intern Project
+    -   Implemented a RESTful API to interface with an Elasticsearch database storing
+        metadata of online orders
+    -   Designed a Kibana visualization dashboard showing the service's health in
+        a quickly digestible medium
+    -   Helped containerize and deploy the app using Google Cloud Platform
+- !Work_Exp_Listing
+    date_start: May 2018
+    date_end: December 2020
+    title: Undergraduate Teaching Assistant, CS 1332 (Data Structures & Algorithms)
+    company: College of Computing, Georgia Institute of Technology
+    city: Atlanta
+    state: GA
+    description_list:
+    -   Taught weekly 1.5 hour recitations of 40+ students on topics such as sorting,
+        pattern matching, dynamic programming algorithms, lists, stacks & queues,
+        trees, maps, and graphs
+    -   Held 3+ office hours per week for out-of-class assistance on homework and
+        exam prep
+    -   Aided in creation and grading of exams, coding assignments, and their JUnit
+        auto-grader tests
