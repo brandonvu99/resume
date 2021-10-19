@@ -1,0 +1,10 @@
+- !Education_Listing
+    date_start: August 2017
+    date_end: December 2020
+    degree_title: Bachelor of Science in Computer Science
+    school_name: Georgia Institute of Technology
+    city: Atlanta
+    state: GA
+    description_list:
+    -   'Overall GPA: 4.0/4.0'
+    -   'Threads: Information Internetworks, Intelligence'

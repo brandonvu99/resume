@@ -1,0 +1,25 @@
+- !Skill_Listing
+    skill_category: Languages
+    skill_list:
+    -   TypeScript
+    -   Rust
+    -   Angular
+    -   Python
+    -   Java
+    -   C
+    -   C\#
+    -   MySQL
+- !Skill_Listing
+    skill_category: Other
+    skill_list:
+    -   AWS
+    -   Git
+    -   Docker
+    -   SpringBoot
+    -   Unit Testing
+    -   PyTorch
+    -   \LaTeX
+- !Skill_Listing
+    skill_category: Non-Technical
+    skill_list:
+    -   Agile Development

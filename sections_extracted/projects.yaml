@@ -1,0 +1,15 @@
+- !Project_Listing
+    name: Karaoke Queuer
+    description: a full-stack app deployed on AWS, which uses an Angular front-end
+      and a Python API back-end. Created for personal use to help intelligently queue
+      requested songs using a fair scheduling algorithm.
+- !Project_Listing
+    name: REST and Taxes
+    description: a top 3 out of 370 app made at an \textit{NCR} hackathon that served
+      as a central tax service for \textit{NCR}'s many point of sales. Built to be
+      easily extensible to more point of sales and external tax services.
+- !Project_Listing
+    name: 'Bee-Snap: BeeKeeperGo'
+    description: a mobile game built in Unity and C\# for a Georgia Tech College of
+      Sciences professor that collects and analyzes locations of crowd-sourced images
+      of different species of bees

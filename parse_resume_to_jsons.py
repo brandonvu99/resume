@@ -28,12 +28,80 @@ for file_path in ALL_FILE_PATHS_TO_EXTRACTED_DATA:
     if os.path.exists(file_path):
         os.remove(file_path)
 
+# Mapping of x to y that is used to replace every instance of x with y in the tex string
+latex_escaped_chars_replacement_map = (
+    (r'\\&', '&'),
+    (r'\\$', '$'),
+    (r'\\texttt\{\+\}', '+'),
+    (r'\\nth\{1\}', '1st'),
+    (r'\\%', '%')
+)
+
 def extract_education():
-    pass
+    # Object to hold one Education listing
+    class Education_Listing():
+        def __init__(self, date_start="", date_end="", degree_title="", school_name="", city="", state="", description_list=[]):
+            self.date_start = date_start
+            self.date_end = date_end
+            self.degree_title = degree_title
+            self.school_name = school_name
+            self.city = city
+            self.state = state
+            self.description_list = description_list
+    yaml.register_class(Education_Listing)
+
+    # Open the tex file as a string
+    with open('cv.tex', 'r') as f:
+        texfile = f.read()
+
+    # Extract the Education section as a string
+    education_contents = re.search('\\\\section{Education}\n((.|\n)*)\\\\section{Work Experience}', texfile).group(1)
+
+    # Unindent each line by one tab
+    education_contents = re.sub('\n\t', '\n', education_contents)
+    education_contents = re.sub('^\t', '', education_contents)
+
+    # Remove tex comments
+    education_contents = re.sub(r'%.*\n', '\n', education_contents)
+
+    # Remove \begin{itemize}\end{itemize} section
+    education_contents = re.sub(r'\\begin{itemize}', '', education_contents)
+    education_contents = re.sub(r'\\end{itemize}', '', education_contents)
+
+    # Use the mapping to replace every escaped tex char/macro with the plaintext version
+    for find_str, sub_str in latex_escaped_chars_replacement_map:
+        education_contents = re.sub(find_str, sub_str, education_contents)
+
+    # Separate each education into its own string
+    each_education_contents = education_contents.split(r'\cventry')[1:]
+
+    def get_one_education_listing(one_education_listing):
+        # Unindent each line by one tab
+        one_education_listing = re.sub('\\t', '', one_education_listing)
+        # Get rid of the \item enumeration from each bullet point
+        one_education_listing = re.sub('\\\item ', '', one_education_listing)
+        # Separate (metadata and) each bullet point into its own string
+        one_education_listing = one_education_listing.strip().split('\n')
+        # Define the metadata of a job, like date_range, title, etc.
+        metadata = one_education_listing[0]
+        # Further split the metadata that's wrapped in curly brackets
+        date_range, title, company, city, state = re.findall('{([^{}]*)}', metadata)
+        # Split the date_range into date_start and date_end
+        date_start, date_end = date_range.split(' -- ')
+        # Extract only the bullet points from the list
+        description_list = one_education_listing[2:-1]
+
+        return Education_Listing(date_start, date_end, title, company, city, state, description_list)
+
+    # Create the entire Education section
+    education = [get_one_education_listing(x) for x in each_education_contents]
+
+    with open(EDUCATION_YAML_FILE_PATH, 'w') as f:
+        yaml.dump(education, f)
 
 def extract_job_descriptions_to_txt():
     # Mapping of x to y that is used to replace every instance of x with y in the tex string
-    latex_escaped_chars_replacement_map = (
+    latex_escaped_chars_replacement_map_override = (
         (r'\\&', '&'),
         (r'\\$', '$'),
         (r'\\textit\{NCR\}', 'NCR'),
@@ -89,7 +157,7 @@ def extract_job_descriptions_to_txt():
     work_experience_contents = re.sub(r'\\end{itemize}', '', work_experience_contents)
 
     # Use the mapping to replace every escaped tex char/macro with the plaintext version
-    for find_str, sub_str in latex_escaped_chars_replacement_map:
+    for find_str, sub_str in latex_escaped_chars_replacement_map_override:
         work_experience_contents = re.sub(find_str, sub_str, work_experience_contents)
     # work_experience_contents = re.sub('^\\t[^\\t]*$', '', work_experience_contents)
 
@@ -153,15 +221,6 @@ def extract_job_descriptions_to_txt():
             f.write(work_exp_as_text)
 
 def extract_job_descriptions():
-    # Mapping of x to y that is used to replace every instance of x with y in the tex string
-    latex_escaped_chars_replacement_map = (
-        (r'\\&', '&'),
-        (r'\\$', '$'),
-        (r'\\texttt\{\+\}', '+'),
-        (r'\\nth\{1\}', '1st'),
-        (r'\\%', '%')
-    )
-
     # Object to hold one Work Experience listing
     class Work_Exp_Listing():
         def __init__(self, date_start="", date_end="", title="", company="", city="", state="", description_list=[]):
@@ -221,10 +280,96 @@ def extract_job_descriptions():
         yaml.dump(work_exp, f)
 
 def extract_projects():
-    pass
+    # Object to hold one Project listing
+    class Project_Listing():
+        def __init__(self, name="", description=""):
+            self.name = name
+            self.description = description
+    yaml.register_class(Project_Listing)
+
+    # Open the tex file as a string
+    with open('cv.tex', 'r') as f:
+        texfile = f.read()
+
+    # Extract the Project section as a string
+    project_contents = re.search('\\\\section{Projects}\n((.|\n)*)\\\\section{Skills}', texfile).group(1)
+
+    # Unindent each line by one tab
+    project_contents = re.sub('\n\t', '\n', project_contents)
+    project_contents = re.sub('^\t', '', project_contents)
+
+    # Remove tex comments
+    project_contents = re.sub(r'%.*\n', '\n', project_contents)
+
+    # Remove \begin{itemize}\end{itemize} section
+    project_contents = re.sub(r'\\begin{itemize}', '', project_contents)
+    project_contents = re.sub(r'\\end{itemize}', '', project_contents)
+
+    # Use the mapping to replace every escaped tex char/macro with the plaintext version
+    for find_str, sub_str in latex_escaped_chars_replacement_map:
+        project_contents = re.sub(find_str, sub_str, project_contents)
+
+    # Separate each project into its own string
+    each_project_contents = project_contents.split(r'\cvlistitem')[1:]
+
+    def get_one_project_listing(one_project_listing):
+        # Unindent each line by one tab
+        one_project_listing = re.sub('\\t', '', one_project_listing)
+        # Get the project name which looks like \textbf{Karaoke Queuer}
+        name = re.search(r'\\textbf{(.*)}, ', one_project_listing).group(1)
+        description = re.search(r'\\textbf{.*}, (.*)}', one_project_listing).group(1)
+        return Project_Listing(name, description)
+
+    # Create the entire Work Experience section
+    projects = [get_one_project_listing(x) for x in each_project_contents]
+
+    with open(PROJECTS_YAML_FILE_PATH, 'w') as f:
+        yaml.dump(projects, f)
 
 def extract_skills():
-    pass
+    
+    # Object to hold one Skill listing
+    class Skill_Listing():
+        def __init__(self, skill_category="", skill_list=""):
+            self.skill_category = skill_category
+            self.skill_list = skill_list
+    yaml.register_class(Skill_Listing)
+
+    # Open the tex file as a string
+    with open('cv.tex', 'r') as f:
+        texfile = f.read()
+
+    # Extract the Skills section as a string
+    skills_contents = re.search('\\\\section{Skills}\n((.|\n)*)\\\\section{Interests}', texfile).group(1)
+
+    # Unindent each line by one tab
+    skills_contents = re.sub('\n\t', '\n', skills_contents)
+    skills_contents = re.sub('^\t', '', skills_contents)
+
+    # Remove tex comments
+    skills_contents = re.sub(r'%.*\n', '\n', skills_contents)
+
+    # Remove \begin{itemize}\end{itemize} section
+    skills_contents = re.sub(r'\\begin{itemize}', '', skills_contents)
+    skills_contents = re.sub(r'\\end{itemize}', '', skills_contents)
+
+    # Use the mapping to replace every escaped tex char/macro with the plaintext version
+    for find_str, sub_str in latex_escaped_chars_replacement_map:
+        skills_contents = re.sub(find_str, sub_str, skills_contents)
+
+    # Separate each skill into its own tuple (skill_category, skill_list). The ? modifier on * makes the * non-greedy
+    skills_contents = re.findall(r'{(.*?)}', skills_contents)
+    skills = []
+    for i in range(0, len(skills_contents), 2):
+        category = skills_contents[i].replace(":", "")
+        skill_list_as_one_string = skills_contents[i+1]
+        if not category and not skill_list_as_one_string:
+            continue
+        skill_list = skill_list_as_one_string.split(', ')
+        skills.append(Skill_Listing(category, skill_list))
+
+    with open(SKILLS_YAML_FILE_PATH, 'w') as f:
+        yaml.dump(skills, f)
 
 extract_education()
 extract_job_descriptions()
