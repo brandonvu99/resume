@@ -1,7 +1,7 @@
 import re
 import pprint
 import os
-JOB_DESCRIPTIONS_TEXT_FILE_PATH = 'job descriptions.txt'
+JOB_DESCRIPTIONS_TEXT_FILE_PATH = 'sections_extracted/job_descriptions.txt'
 if os.path.exists(JOB_DESCRIPTIONS_TEXT_FILE_PATH):
     os.remove(JOB_DESCRIPTIONS_TEXT_FILE_PATH)
 pp = pprint.PrettyPrinter(indent=4)
