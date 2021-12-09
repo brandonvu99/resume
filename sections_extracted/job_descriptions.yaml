@@ -1,6 +1,15 @@
 - !Work_Exp_Listing
-    date_start: February 2021
+    date_start: January 2022
     date_end: Present
+    title: Software Engineer
+    company: Google
+    city: Atlanta
+    state: GA
+    description_list:
+    -   TBD
+- !Work_Exp_Listing
+    date_start: February 2021
+    date_end: December 2021
     title: Associate Software Engineer
     company: Capital One
     city: Richmond
