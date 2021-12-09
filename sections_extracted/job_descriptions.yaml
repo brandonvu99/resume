@@ -65,9 +65,9 @@
     city: Atlanta
     state: GA
     description_list:
-    -   Taught weekly 1.5 hour recitations of 40+ students on topics such as sorting,
-        pattern matching, dynamic programming algorithms, lists, stacks & queues,
-        trees, maps, and graphs
+    -   Taught weekly 1.5 hour recitations for 6 semesters to 40+ students on topics
+        such as sorting, pattern matching, dynamic programming algorithms, lists,
+        stacks & queues, trees, maps, and graphs
     -   Held 3+ office hours per week for out-of-class assistance on homework and
         exam prep
     -   Aided in creation and grading of exams, coding assignments, and their JUnit
